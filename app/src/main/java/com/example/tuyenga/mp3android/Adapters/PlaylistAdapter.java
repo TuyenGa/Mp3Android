@@ -1,4 +1,4 @@
-package com.example.tuyenga.mp3android.Controllers;
+package com.example.tuyenga.mp3android.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,16 +9,15 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.tuyenga.mp3android.R;
-import com.example.tuyenga.mp3android.Song;
+import com.example.tuyenga.mp3android.Models.SongModel;
 
 import java.util.ArrayList;
 
 public class PlaylistAdapter extends BaseAdapter{
-    private ArrayList<Song> songList;
+    private ArrayList<SongModel> songList;
     private Activity context;
 
-    public PlaylistAdapter(ArrayList<Song> songList, Activity context) {
-        this.songList = songList;
+    public PlaylistAdapter( Activity context) {
         this.context = context;
     }
 
@@ -27,8 +26,16 @@ public class PlaylistAdapter extends BaseAdapter{
         return songList.size();
     }
 
+    public ArrayList<SongModel> getData() {
+        return songList;
+    }
+
+    public void setData(ArrayList<SongModel> songList) {
+        this.songList = songList;
+    }
+
     @Override
-    public Song getItem(int i) {
+    public SongModel getItem(int i) {
         return songList.get(i);
     }
 

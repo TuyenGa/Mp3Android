@@ -1,37 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
+
     <LinearLayout
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <TextView
-            android:text="Music folder: "
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"/>
-        <EditText
-            android:id="@+id/musicFolder"
-            android:text="Download"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"/>
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnReloadMusic"
-            android:text="Reload"
-            android:paddingLeft="10dp"/>
+            android:paddingLeft="10dp"
+            android:text="@string/musicFolder" />
+
+        <Spinner
+            android:id="@+id/spinnerMusicFolders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/playlist"
+    <FrameLayout
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+        <ListView
+            android:id="@+id/playlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+        <TextView
+            android:id="@+id/noneMusic"
+            android:gravity="center"
+            android:text="@string/noneMusic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
 
 </LinearLayout>

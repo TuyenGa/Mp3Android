@@ -2,7 +2,7 @@ package com.example.tuyenga.mp3android.Utility;
 
 import android.os.Environment;
 
-import com.example.tuyenga.mp3android.Song;
+import com.example.tuyenga.mp3android.Models.SongModel;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -15,15 +15,15 @@ import java.util.ArrayList;
 public class CommonActions {
     public CommonActions() {
     }
-    public static ArrayList<Song> getPlayList(String musicFolder) {
-        ArrayList<Song> songsList = new ArrayList<>();
+    public static ArrayList<SongModel> getPlayList(String musicFolder) {
+        ArrayList<SongModel> songsList = new ArrayList<>();
         String sdcard = Environment.getExternalStorageDirectory().getAbsolutePath();
         File home = new File(sdcard + File.separator + musicFolder);
         try {
             for (File file : home.listFiles(new FileExtensionFilter())) {
                 String songTitle = file.getName().substring(0, (file.getName().length() - 4));
                 String songPath = file.getPath();
-                Song song = new Song(songTitle, songPath);
+                SongModel song = new SongModel(songTitle, songPath);
 
                 songsList.add(song);
             }
@@ -31,6 +31,22 @@ public class CommonActions {
         }
         catch (Exception e) {
             return songsList;
+        }
+    }
+
+    public static ArrayList<String> getRootFolderCountMusic() {
+        ArrayList<String> list = new ArrayList<>();
+        String sdcard = Environment.getExternalStorageDirectory().getAbsolutePath();
+        File home = new File(sdcard);
+        try {
+            for (File file : home.listFiles()) {
+               int count = file.listFiles(new FileExtensionFilter()).length;
+                list.add(String.format("%s (%s)", file.getName(), count));
+            }
+            return list;
+        }
+        catch (Exception e) {
+            return list;
         }
     }
 
@@ -42,5 +58,14 @@ public class CommonActions {
         public boolean accept(File dir, String name) {
             return (name.endsWith(".mp3") || name.endsWith(".MP3"));
         }
+    }
+
+    public static int findIndexStartWith(String start, ArrayList<String> list) {
+        for (String s : list) {
+            if (s.startsWith(start)) {
+                return list.indexOf(s);
+            }
+        }
+        return -1;
     }
 }
