@@ -13,19 +13,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Thread t_sleep = new Thread() {
-            public void run() {
-                try {
-                    sleep(2000);
-                } catch (Exception e) {
 
-                } finally {
-                    Intent listIntent = new Intent(context, PlaylistActivity.class);
-                    startActivity(listIntent);
-                }
-            }
-        };
-        t_sleep.start();
+
     }
 
     //sau khi chuyển sang màn hình chính, kết thúc màn hình chào

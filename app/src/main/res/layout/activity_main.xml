@@ -6,13 +6,74 @@
     android:layout_height="match_parent"
     tools:context="com.example.tuyenga.mp3android.Views.MainActivity">
 
-    <TextView
+    <ImageButton
+        android:id="@+id/btnBackward"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@mipmap/ic_remind"
+        tools:layout_editor_absoluteX="97dp"
+        tools:layout_editor_absoluteY="498dp" />
+
+    <ImageButton
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:srcCompat="@mipmap/play_icon"
+        tools:layout_editor_absoluteY="498dp" />
+
+    <ImageButton
+        android:id="@+id/btnForward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_forward"
+        tools:layout_editor_absoluteX="219dp"
+        tools:layout_editor_absoluteY="498dp" />
+
+    <ImageButton
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="32dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@mipmap/ic_next_songs"
+        tools:layout_editor_absoluteY="498dp"
+        android:layout_marginEnd="32dp" />
+
+    <ImageButton
+        android:id="@+id/btnPrivious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_back_song"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="498dp" />
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="320dp"
+        android:layout_height="14dp"
+        android:max="10"
+        android:progress="3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="469dp" />
+
+    <TextView
+        android:id="@+id/lblCurrentDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="currenttime"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="440dp" />
+
+    <TextView
+        android:id="@+id/lblTotalDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="totalTime"
+        tools:layout_editor_absoluteX="291dp"
+        tools:layout_editor_absoluteY="440dp" />
 
 </android.support.constraint.ConstraintLayout>
