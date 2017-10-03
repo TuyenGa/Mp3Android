@@ -1,4 +1,4 @@
-package com.example.tuyenga.mp3android.Views;
+package com.example.tuyenga.mp3android.Activitys;
 
 import android.content.Context;
 import android.content.Intent;
