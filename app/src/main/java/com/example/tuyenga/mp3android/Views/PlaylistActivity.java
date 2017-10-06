@@ -1,7 +1,10 @@
 package com.example.tuyenga.mp3android.Views;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -9,14 +12,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.tuyenga.mp3android.Controllers.PlaylistAdapter;
+import com.example.tuyenga.mp3android.Models.SongModel;
 import com.example.tuyenga.mp3android.R;
-import com.example.tuyenga.mp3android.Song;
 import com.example.tuyenga.mp3android.Utility.CommonActions;
 
 import java.util.ArrayList;
 
-public class PlaylistActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, View.OnClickListener {
-    private ArrayList<Song> songList;
+public class PlaylistActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+    private ArrayList<SongModel> songList;
+    Toolbar toolbar;
     PlaylistAdapter playlistAdapter;
     EditText musicFolder;
     ListView playlist;
@@ -27,15 +31,19 @@ public class PlaylistActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist);
         connectView();
-        songList = CommonActions.getPlayList(musicFolder.getText().toString());
+        songList = CommonActions.getPlayList("sdcard/Download");
         playlistAdapter = new PlaylistAdapter(songList, this);
         playlist.setAdapter(playlistAdapter);
+        toolbar.setTitle("Playlist");
+        toolbar.setTitleTextColor(Color.WHITE);
+
+
+
+
     }
 
     private void connectView(){
-        musicFolder = (EditText) findViewById(R.id.musicFolder);
-        btnReloadMusic = (Button) findViewById(R.id.btnReloadMusic);
-        btnReloadMusic.setOnClickListener(this);
+        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         playlist = (ListView) findViewById(R.id.playlist);
         playlist.setOnItemClickListener(this);
         playlist.setOnItemLongClickListener(this);
@@ -43,9 +51,12 @@ public class PlaylistActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        System.out.print(playlistAdapter.getItem(position).getTitle());
-        System.out.println(" -- clicked at :"+position);
-        playlistAdapter.notifyDataSetChanged();
+
+        Intent intent = new Intent();
+        intent.putExtra("id",position);
+
+        setResult(RESULT_OK,intent);
+        finish();
     }
 
     @Override
@@ -56,13 +67,4 @@ public class PlaylistActivity extends AppCompatActivity implements AdapterView.O
         return false;
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.btnReloadMusic) {
-            System.out.println(musicFolder.getText().toString());
-            songList = CommonActions.getPlayList(musicFolder.getText().toString());
-            System.out.println(songList.size()+ "new size::::");
-            playlistAdapter.notifyDataSetChanged();
-        }
-    }
 }

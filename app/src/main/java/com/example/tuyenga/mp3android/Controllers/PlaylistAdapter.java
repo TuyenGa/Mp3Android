@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.tuyenga.mp3android.Models.SongModel;
 import com.example.tuyenga.mp3android.R;
-import com.example.tuyenga.mp3android.Song;
 
 import java.util.ArrayList;
 
 public class PlaylistAdapter extends BaseAdapter{
-    private ArrayList<Song> songList;
+    private ArrayList<SongModel> songList = new ArrayList<>();
     private Activity context;
 
-    public PlaylistAdapter(ArrayList<Song> songList, Activity context) {
+    public PlaylistAdapter(ArrayList<SongModel> songList, Activity context) {
         this.songList = songList;
         this.context = context;
     }
@@ -28,7 +28,7 @@ public class PlaylistAdapter extends BaseAdapter{
     }
 
     @Override
-    public Song getItem(int i) {
+    public SongModel getItem(int i) {
         return songList.get(i);
     }
 
@@ -44,10 +44,11 @@ public class PlaylistAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.playlist_item, null);
-        TextView tvTitle = view.findViewById(R.id.tv_item_title);
-        tvTitle.setText(getItem(i).getTitle());
-        return view;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View rowView = inflater.inflate(R.layout.playlist_item,viewGroup,false);
+       // view = inflater.inflate(R.layout.playlist_item, null);
+        TextView tvTitle = (TextView) rowView.findViewById(R.id.tv_item_title);
+        tvTitle.setText(songList.get(i).getTitle());
+        return rowView;
     }
 }

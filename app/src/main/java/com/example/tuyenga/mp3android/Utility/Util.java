@@ -1,5 +1,7 @@
 package com.example.tuyenga.mp3android.Utility;
 
+import android.util.Log;
+
 /**
  * Created by tuyenga on 03/10/2017.
  */
@@ -10,7 +12,7 @@ public class Util {
      * @param milliseconds
      * @return finalTimerString
      */
-    public static String milliSecondsToTime(long milliseconds)
+    public static String milliSecondsToTimer(long milliseconds)
     {
         String finalTimerString = "";
         String secondsString = "";
@@ -60,10 +62,9 @@ public class Util {
 
         // tinh phan tram
 
-        percentage = (((double) currentSeconds) / totalDuration)* 100;
+        percentage = (((double) currentSeconds) / totalSeconds)* 100;
 
         // return percentage
-
         return  percentage.intValue();
     }
 
