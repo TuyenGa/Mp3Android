@@ -2,7 +2,7 @@ package com.example.tuyenga.mp3android.Utility;
 
 import android.os.Environment;
 
-import com.example.tuyenga.mp3android.Song;
+import com.example.tuyenga.mp3android.Models.SongModel;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -15,15 +15,15 @@ import java.util.ArrayList;
 public class CommonActions {
     public CommonActions() {
     }
-    public static ArrayList<Song> getPlayList(String musicFolder) {
-        ArrayList<Song> songsList = new ArrayList<>();
+    public static ArrayList<SongModel> getPlayList(String download) {
+        ArrayList<SongModel> songsList = new ArrayList<>();
         String sdcard = Environment.getExternalStorageDirectory().getAbsolutePath();
-        File home = new File(sdcard + File.separator + musicFolder);
+        File home = new File(sdcard + File.separator + "Download");
         try {
             for (File file : home.listFiles(new FileExtensionFilter())) {
                 String songTitle = file.getName().substring(0, (file.getName().length() - 4));
                 String songPath = file.getPath();
-                Song song = new Song(songTitle, songPath);
+                SongModel song = new SongModel(songTitle, songPath);
 
                 songsList.add(song);
             }
