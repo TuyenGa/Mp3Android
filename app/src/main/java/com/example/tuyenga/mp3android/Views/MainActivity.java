@@ -68,8 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
 
         // get all song
-        CommonActions songManager = new CommonActions();
-        arrSongs = songManager.getPlayList("Download");
+        arrSongs = CommonActions.getPlayList("Download");
 
         // media player
         mediaPlayer = new MediaPlayer();
@@ -328,6 +327,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1,builder.build());
+    }
+
+    @Override
+    protected void onPause() {
+        mediaPlayer.pause();
+        btnPlay.setImageResource(R.mipmap.play_icon);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        mediaPlayer.start();
+        btnPlay.setImageResource(R.mipmap.ic_pause);
+        super.onResume();
     }
 
     @Override
